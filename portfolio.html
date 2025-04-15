@@ -4,214 +4,575 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harini Preetha K - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary: rgba(100, 210, 255, 0.8);
+            --secondary: rgba(70, 170, 230, 0.8);
+            --accent: rgba(0, 180, 216, 0.8);
+            --glass: rgba(255, 255, 255, 0.15);
+            --dark: #1A2E40;
+            --light: rgba(240, 248, 255, 0.9);
+            --white: rgba(255, 255, 255, 0.95);
+            --transition: all 0.3s ease;
+            --shadow: 0 8px 32px rgba(0, 100, 150, 0.1);
+            --blur: blur(12px);
+            --border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background: #E0F7FA;
-            color: #333;
+            box-sizing: border-box;
         }
-        .sidebar {
-            width: 250px;
-            position: fixed;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: #0288D1;
-            padding-top: 20px;
+            background: rgba(0, 100, 150, 0.1);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: var(--border);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            color: var(--white);
+        }
+
+        .profile {
             text-align: center;
-            color: #fff;
+            margin-bottom: 30px;
         }
-        .sidebar img {
-            width: 150px;
-            height: 150px;
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--white);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile h1 {
+            font-size: 1.8rem;
             margin-bottom: 10px;
-            border: 3px solid #fff;
+            color: var(--white);
         }
-        .sidebar h1 {
-            color: #fff;
+
+        .profile p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
         }
-        .sidebar ul {
+
+        .nav-links {
             list-style: none;
-            padding: 0;
         }
-        .sidebar ul li {
-            padding: 15px;
+
+        .nav-links li {
+            margin: 12px 0;
         }
-        .sidebar ul li a {
-            color: #fff;
+
+        .nav-links a {
+            color: var(--white);
             text-decoration: none;
-            font-size: 18px;
-        }
-        .content {
-            margin-left: 260px;
-            padding: 20px;
-        }
-        section {
-            background: rgba(255, 255, 255, 0.9);
-            margin: 20px 0;
-            padding: 20px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
             border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
         }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .contact-item i {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        /* Main Content */
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: var(--border);
+            transition: var(--transition);
+            color: var(--white);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 100, 150, 0.2);
+        }
+
+        .glass-card h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .glass-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .glass-card h3 {
+            color: var(--white);
+            margin: 20px 0 10px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .glass-card h3 i {
+            color: var(--accent);
+        }
+
+        .glass-card p, 
+        .glass-card li {
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            height: 100%;
+            width: 2px;
+            background: var(--white);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: -28px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--white);
+        }
+
+        /* Skills */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Projects */
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Achievements */
+        .achievement-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .achievement-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        /* Contact */
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 10px;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .glass-card {
+                padding: 20px;
+            }
+
+            .skills-list {
+                justify-content: center;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .contact-link {
+                width: 100%;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .glass-card:nth-child(1) { animation-delay: 0.1s; }
+        .glass-card:nth-child(2) { animation-delay: 0.2s; }
+        .glass-card:nth-child(3) { animation-delay: 0.3s; }
+        .glass-card:nth-child(4) { animation-delay: 0.4s; }
+        .glass-card:nth-child(5) { animation-delay: 0.5s; }
+        .glass-card:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <img src="Harini.jpeg" alt="Harini Preetha K">
-        <h1>Harini Preetha K</h1>
-        <p>UI/UX Designer | Web Developer | World Record Holder | Orator</p>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#carrer objective">Career Objective</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#Implant Training">Implant Training</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#achievements">Achievements</a></li>
-            <li><a href="#awards">Awards</a></li>
-            <li><a href="#activities">Activities</a></li>
-            <li><a href="#Hackathon">Hackathon</a></li>
-            <li><a href="#workshops">Workshops</a></li>
-            <li><a href="#membership">Membership</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-    
-    <div class="content">
-        <section id="about">
-            <h2>About Me</h2>
-            <p><strong>DOB:</strong> 21/06/2004</p>
-            <p><strong>Nationality:</strong> Indian</p>
-            <p><strong>Address:</strong> Chennai</p>
-            
-        </section>
-        <section id="Carrer objective">
-            <h2>Carrer Objective</h2>
-            <p>To work in an environment which encourages me to succeed and grow professionally where I can utilize my skills and knowledge appropriately.</p>
-        </section>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Harini Preetha K" class="profile-img">
+                <h1>Harini Preetha K</h1>
+                <p>UI/UX Designer | Web Developer | World Record Holder | Orator</p>
+            </div>
 
-
-        <section id="education">
-            <h2>Education</h2>
-            <p>B.E. Electronics & Instrumentation Engineering, SRM Valliammai Engineering College - 8.7 CGPA</p>
-            <h2>HSC</h2>
-            <p>Ramsun’s Matric Higher Secondary School - 85.75% (2021)</p>
-            <h2>SSLC</h2>
-            <p>Ramsun’s Matric Higher Secondary School - 84% (2019)</p>
-        </section>
-
-        <section id="skills">
-            <h2>Professional Skills</h2>
-            <ul>
-                <li>UI/UX (Figma)</li>
-                <li>HTML, CSS, JavaScript</li>
-                <li>Python</li>
+            <ul class="nav-links">
+                <li><a href="#about" class="active"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#career-objective"><i class="fas fa-bullseye"></i> Career Objective</a></li>
+                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
+                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
-        </section>
-        <section id="Implant Training">
-            <h2>Implant Training</h2>
-            
-                <li>IoT Application development with Raspberry Pi</li>
-        </section>
 
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+91 9345983121</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>harinipreetha6@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Chennai, India</span>
+                </div>
+            </div>
+        </aside>
 
-        <section id="projects">
-            <h2>Projects</h2>
-            <ul>
-                <li><b>Reader for Impaired Person using Raspberry Pi</b></li>
-                <P>This project involves creating a reader for visually impaired individuals using a Raspberry Pi, a camera, and OCR (Optical Character Recognition) and text-to-speech technologies to convert printed text into audio output </P>
-                <li><b>Surveillance Wearable Safety Device for Women using Raspberry Pi</b></li>
-                <p>A Raspberry Pi-powered smart jacket for women's safety features an SOS alert system, GPS tracking, live video streaming, and a shocking mechanism to deter attackers. When triggered via a panic button , it delivers  electric shock while sending emergency alerts in real time.</p>
-                <li><b>E-Commerce Website (Designed in Figma UI/UX)</b></li>
-            </ul>
-        </section>
+        <main class="content">
+            <section id="about" class="glass-card">
+                <h2><i class="fas fa-user"></i> About Me</h2>
+                <div class="about-content">
+                    <p><strong>Date of Birth:</strong> 21/06/2004</p>
+                    <p><strong>Nationality:</strong> Indian</p>
+                    <p><strong>Location:</strong> Chennai</p>
+                </div>
+            </section>
 
-        <section id="certifications">
-            <h2>Certifications</h2>
-            <ul>
-                <li>Python for Data Science (NPTEL)</li>
-                <li>Mastering Figma: UI/UX Design (GUVI)</li>
-                <li>Designing E-commerce Website (GUVI)</li>
-                <li>Chatgpt For Everyone(GUVI)</li>
-                <li>Introduction to Machine Learning (Great Learning)</li>
-            </ul>
-        </section>
+            <section id="career-objective" class="glass-card">
+                <h2><i class="fas fa-bullseye"></i> Career Objective</h2>
+                <p>To work in an environment which encourages me to succeed and grow professionally where I can utilize my skills and knowledge appropriately.</p>
+            </section>
 
-        <section id="achievements">
-            <h2>Achievements</h2>
-            <ul>
-                <li>World Record Holder for 24-hour Continuous Drama on "Society Empowerment"</li>
-                <li>2nd Prize in Techtrekon conducted by Elexrieg'25</li>
-                <li>3rd Prize in Paper Fest conducted by Elexrieg'25</li>
-                <li>2nd Prize in Technovation conducted by Tantrotsav'25</li>
-                <li>3rd Prize in Paper Presentation conducted by Hackerz'25</li>
-                <li>2nd Prize in Paper Presentation conducted by Xploits'25</li>
-                <li>3rd Prize in PaperCon conducted by Cyborgs'24</li>
-                <li>1st Prize in Paper Presentation conducted by Aurganon'24</li>
-                <li>2nd Prize in Paper Presentation conducted by Nexum'25</li>
-                <li>1st Prize in Digithon conducted by Xploits'23</li>
-                <li>3rd Prize in Project Expo </li>
-            </ul>
-        </section>
-        <section id="Awards">
-            <h2>Awards</h2>
-            <ul>
-                <li>I Received "Special Achiever Award" in 2024</li>
-                <li>I Received "Best Outgoing Student Award" in 2025</li>
-            </ul>
-        </section>
+            <section id="education" class="glass-card">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3><i class="fas fa-university"></i> Bachelor of Engineering</h3>
+                        <p>Electronics & Instrumentation Engineering</p>
+                        <p>SRM Valliammai Engineering College</p>
+                        <p><strong>CGPA:</strong> 8.7</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3><i class="fas fa-school"></i> Higher Secondary</h3>
+                        <p>Ramsun's Matric Higher Secondary School</p>
+                        <p><strong>Percentage:</strong> 85.75% (2021)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3><i class="fas fa-school"></i> Secondary School</h3>
+                        <p>Ramsun's Matric Higher Secondary School</p>
+                        <p><strong>Percentage:</strong> 84% (2019)</p>
+                    </div>
+                </div>
+            </section>
 
+            <section id="skills" class="glass-card">
+                <h2><i class="fas fa-code"></i> Professional Skills</h2>
+                <div class="skills-list">
+                    <div class="skill"><i class="fas fa-paint-brush"></i> UI/UX (Figma)</div>
+                    <div class="skill"><i class="fab fa-html5"></i> HTML</div>
+                    <div class="skill"><i class="fab fa-css3-alt"></i> CSS</div>
+                    <div class="skill"><i class="fab fa-js"></i> JavaScript</div>
+                    <div class="skill"><i class="fab fa-python"></i> Python</div>
+                    <div class="skill"><i class="fas fa-microchip"></i> Raspberry Pi</div>
+                    <div class="skill"><i class="fas fa-robot"></i> IoT</div>
+                </div>
+            </section>
 
-        <section id="activities">
-            <h2>Activities</h2>
-            <ul>
-                <li>Participated in National Level Technical Symposium TARAS - 2K22</li>
-                <li>Participated in Paper Presentation Event Conducted by Pragyotsav'25</li>
-                <li>Participated in Artify UI Event Conducted by Hackerz'25</li>
-                <li>Participated in Prompt Pixel Event Conducted by Magnus'25</li>
-                <li>Participated in Various Tamil Mandram Events </li>
-                <li>Participated in Reality TV Debate Shows</li>
+            <section id="projects" class="glass-card">
+                <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+                <div class="project-card">
+                    <h3><i class="fas fa-book-reader"></i> Reader for Impaired Person using Raspberry Pi</h3>
+                    <p>This project involves creating a reader for visually impaired individuals using a Raspberry Pi, a camera, and OCR (Optical Character Recognition) and text-to-speech technologies to convert printed text into audio output.</p>
+                </div>
+                <div class="project-card">
+                    <h3><i class="fas fa-tshirt"></i> Surveillance Wearable Safety Device for Women using Raspberry Pi</h3>
+                    <p>A Raspberry Pi-powered smart jacket for women's safety features an SOS alert system, GPS tracking, live video streaming, and a shocking mechanism to deter attackers.</p>
+                </div>
+                <div class="project-card">
+                    <h3><i class="fas fa-shopping-cart"></i> E-Commerce Website (Designed in Figma UI/UX)</h3>
+                    <p>A complete UI/UX design for an e-commerce website created using Figma, focusing on user experience and modern design principles.</p>
+                </div>
+            </section>
 
-            </ul>
-        </section>
+            <section id="achievements" class="glass-card">
+                <h2><i class="fas fa-trophy"></i> Achievements & Awards</h2>
+                <div class="achievement-item">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div>
+                        <h3>World Record Holder</h3>
+                        <p>24-hour Continuous Drama on "Society Empowerment"</p>
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div>
+                        <h3>Special Achiever Award (2024)</h3>
+                        <p>Recognized for outstanding accomplishments</p>
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div>
+                        <h3>Multiple Competition Wins</h3>
+                        <p>1st, 2nd & 3rd prizes in various technical events including Techtrekon, Tantrotsav, and Xploits</p>
+                    </div>
+                </div>
+            </section>
 
-        <section id="Hackathon">
-            <h2>Hackathon</h2>
-            <ul>
-                <li>Danjr 2.0 Hackathon conducted by GUVI in IITM Research Park on Feb 2 2025</li>
-            </ul>
-        </section>
-
-        <section id="workshops">
-            <h2>Workshops</h2>
-            <ul>
-                <li>Completed Deep Vision 2-days Workshop conducted by IBM Kurukshetra</li>
-            </ul>
-        </section>
-
-        <section id="membership">
-            <h2>Membership</h2>
-            <ul>
-                <li>CSI Member</li>
-                <li>Robotics Club Member</li>
-                <li>Member of Indian Society For Technical Education</li>
-                <li>Tamil Mandram Member</li>
-
-            </ul>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <p><a href="https://github.com/HariniPreetha" target="_blank">https://github.com/HariniPreetha</a></p>
-            <p><a href="https://www.linkedin.com/in/harini-preetha-k" target="_blank">https://www.linkedin.com/in/harini-preetha-k</a></p>
-            <p><a href="mailto:harinipreetha6@gmail.com">harinipreetha6@gmail.com</a></p>
-            <p><a href="tel:+919345983121"> +91 9345983121</a></p>
-        </section>
+            <section id="contact" class="glass-card">
+                <h2><i class="fas fa-envelope"></i> Contact</h2>
+                <div class="contact-links">
+                    <a href="https://github.com/HariniPreetha" target="_blank" class="contact-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/harini-preetha-k" target="_blank" class="contact-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="mailto:harinipreetha6@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="tel:+919345983121" class="contact-link">
+                        <i class="fas fa-phone"></i> Call
+                    </a>
+                </div>
+            </section>
+        </main>
     </div>
 
+    <script>
+        // Highlight active nav link
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
